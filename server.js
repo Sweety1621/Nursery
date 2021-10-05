@@ -3,10 +3,18 @@ const express = require("express");
 const ejs = require("ejs");
 const path = require("path");
 const expressLayout = require("express-ejs-layouts");
+// const favicon = require("serve-favicon");
 
 const app = express();
 
+// Favicon
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 const PORT = process.env.PORT || 3000;  //simply use 'or' than if else
+
+
+// Assets
+app.use(express.static("public"));
 
 
 app.get("/", (req, res)=>{
