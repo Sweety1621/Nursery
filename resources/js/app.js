@@ -1,3 +1,5 @@
+
+// jshint maxerr:1000
 import axios from "axios";
 import Toastr from "toastr";
 
