@@ -1,0 +1,48 @@
+[{
+    "name": "Plant 1",
+    "image": "plant.jpg",
+    "price": "240",
+    "type" : "Decorative"
+},
+{
+    "name": "Plant 2",
+    "image": "plant.jpg",
+    "price": "125",
+    "type" : "Fruit"
+},
+{
+    "name": "Plant 3",
+    "image": "plant.jpg",
+    "price": "200",
+    "type" : "Decorative"
+},
+{
+    "name": "Plant 4",
+    "image": "plant.jpg",
+    "price": "220",
+    "type" : "Herbs"
+},
+{
+    "name": "Plant 5",
+    "image": "plant.jpg",
+    "price": "140",
+    "type" : "Vegetable"
+},
+{
+    "name": "Plant 6",
+    "image": "plant.jpg",
+    "price": "85",
+    "type" : "Fruit"
+},
+{
+    "name": "Plant 7",
+    "image": "plant.jpg",
+    "price": "230",
+    "type" : "Decorative"
+},
+{
+    "name": "Plant 8",
+    "image": "plant.jpg",
+    "price": "110",
+    "type" : "Vegetable"
+}]

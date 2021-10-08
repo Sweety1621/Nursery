@@ -1,39 +1,28 @@
 <section class="cart py-16">
 
     <!-- Non-Empty Cart -->
+    <% if(session.cart) {%>
     <div class="order container mx-auto w-1/2">
         <div class="flex items-center border-b border-gray-300 pb-4">
             <img class="h-12" src="/img/cart.png" alt="">
             <h1 class="font-bold ml-4 text-2xl">Order Summary</h1>
         </div>
         <div class="plant-list">
+            
+            <% for(let plant of Object.values(session.cart.items)) { %>
+
             <div class="flex items-center my-8">
-                <img class="w-24" src="/img/plant.jpg" alt="">
+                <img class="w-24" src="/img/<%=plant.item.image%>" alt="">
                 <div class=" flex-1 ml-4">
-                    <h1>Plant 1</h1>
-                    <span>DECORATIVE</span>
+                    <h1><%=plant.item.name%></h1>
+                    <span><%=plant.item.type%></span>
                 </div>
-                <span class="flex-1">1 Pcs</span>
-                <span class="font-bold text-lg">Rs 240</span>
+                <span class="flex-1"><%=plant.qnty%></span>
+                <span class="font-bold text-lg">Rs <%=(plant.item.price)*(plant.qnty)%></span>
             </div>
-            <div class="flex items-center my-8">
-                <img class="w-24" src="/img/plant.jpg" alt="">
-                <div class=" flex-1 ml-4">
-                    <h1>Plant 1</h1>
-                    <span>DECORATIVE</span>
-                </div>
-                <span class="flex-1">1 Pcs</span>
-                <span class="font-bold text-lg">Rs 240</span>
-            </div>
-            <div class="flex items-center my-8">
-                <img class="w-24" src="/img/plant.jpg" alt="">
-                <div class=" flex-1 ml-4">
-                    <h1>Plant 1</h1>
-                    <span>DECORATIVE</span>
-                </div>
-                <span class="flex-1">1 Pcs</span>
-                <span class="font-bold text-lg">Rs 240</span>
-            </div>
+
+            <% } %>
+
         </div>
 
         <hr>
@@ -41,7 +30,7 @@
         <div class="text-right py-4">
             <div>
                 <span class="text-lg font-bold">Total Amount:</span>
-                <span class="amount text-2xl font-bold ml-2">Rs 240</span>
+                <span class="amount text-2xl font-bold ml-2">Rs <%=session.cart.totPrice%></span>
             </div> 
 
             <div>
@@ -59,20 +48,23 @@
 
     </div>
 
+    <% } else {%>
+
     <!-- Empty Cart -->
-    <!-- <div class="empty-cart py-16">
+    <div class="empty-cart py-16">
 
         <div class="container mx-auto text-center">
             <h1 class="font-bold text-3xl mb-2">Cart Empty 🙁</h1>
             <p class="text-gray-500 text-lg mb-12">
                 To order plants, go to the home page.
-                *can add homepage button*
+                <!-- can add homepage button -->
             </p>
             <img class="mx-auto w-2/5" src="/img/empty-cart.png" alt="empty-cart">
             <a href="/" class="inline-block rounded-full px-4 py-3 btn-primary text-white font-bold mt-12">Go Back</a>
         </div>
-    </div> -->
+    </div>
 
+    <% } %>
     
 
 </section>

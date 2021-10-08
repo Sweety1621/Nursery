@@ -1,4 +1,6 @@
 @import './variables';
+@import "toastr";
+
 
 body {
     font-family: "Lato", sans-serif;
@@ -92,4 +94,24 @@ section.login {
             color: $primary-hover;
         }
     }
+}
+
+.toast-success {
+    background-color: $toast;
+}
+
+.toast-error {
+    background-color: #bd362f;
+}
+
+#toast-container > .toast-error {
+    background-image: url("") !important;
+}
+
+#toast-container > .toast-success {
+    background-image: url("") !important;
+}
+
+#toast-container > div  {
+    border-radius: 25px;
 }
