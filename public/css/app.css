@@ -354,3 +354,7 @@ section.login a:hover {
 #toast-container > div {
   border-radius: 25px;
 }
+
+a.link {
+  color: #21c266;
+}
