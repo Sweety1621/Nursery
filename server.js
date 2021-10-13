@@ -14,6 +14,7 @@ const session = require("express-session");
 const flash =  require("express-flash");
 const MongoDbStore = require("connect-mongo"); // notice 'M'
 const passport = require("passport");
+const Emitter = require("events");
 
 
 // Favicon
@@ -28,6 +29,10 @@ mongoose.connection.once("open", ()=> {
     console.log("Connection Failed");
 });
 
+
+// Event emitter
+const eventEmitter = new Emitter();
+app.set("eventEmitter", eventEmitter);   // bind with app, so that can be used frm anywhere
 
 
 // Session config
@@ -77,8 +82,28 @@ app.set("view engine", "ejs");
 require("./routes/web")(app);
 
 
-app.listen(PORT, ()=>{
-    // console.log("Server is running on port 3000!");
-    console.log(`Server is running on port ${PORT}!`);
+const server = app.listen(PORT, ()=>{
+                // console.log("Server is running on port 3000!");
+                console.log(`Server is running on port ${PORT}!`);
+            });
+
+// Socket
+const io = require("socket.io")(server);
+io.on("connection", (socket) => {
+    // unique rooms as if one order status changes, then only that orderid status will change => so orderid
+    // console.log(socket.id);
+    // Join
+    socket.on("join", (roomName) => {
+        // console.log(roomName);
+        socket.join(roomName);
+    });
 });
 
+eventEmitter.on("orderUpdated", (data) => {
+    // console.log(data);
+    io.to(`order_${data.id}`).emit("orderUpdated", data);
+});
+
+eventEmitter.on("orderPlaced", (data) => {
+    io.to("adminRoom").emit("orderPlaced", data);
+});
